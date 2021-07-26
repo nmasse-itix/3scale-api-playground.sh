@@ -1,7 +1,7 @@
-declare -A threescale_object_types=( ["backend"]="backend_apis" ["service"]="services" ["metric"]="metrics" ["method"]="methods" ["mapping_rule"]="mapping_rules" ["backend_usage"]="backend_usages" ["application_plan"]="application_plans" ["application_apikey"]="applications" ["application_appid"]="applications" )
-declare -A threescale_contains_external_id=( ["metric"]="contains_external_id_with_prefix" ["method"]="contains_external_id_with_prefix" ["backend_usage"]="contains_numerical_external_id")
-declare -A threescale_id_of_external_id=( ["metric"]="id_of_external_id_with_prefix" ["method"]="id_of_external_id_with_prefix" ["backend_usage"]="id_of_numerical_external_id")
-declare -A threescale_external_id=( ["backend_usage"]="backend_id" ["application_apikey"]="user_key" ["application_appid"]="application_id" )
+declare -A threescale_object_types=( ["backend"]="backend_apis" ["service"]="services" ["metric"]="metrics" ["method"]="methods" ["mapping_rule"]="mapping_rules" ["backend_usage"]="backend_usages" ["application_plan"]="application_plans" ["application_apikey"]="applications" ["application_appid"]="applications" ["limit"]="limits" ["pricing_rule"]="pricing_rules" )
+declare -A threescale_contains_external_id=( ["metric"]="contains_external_id_with_prefix" ["method"]="contains_external_id_with_prefix" ["backend_usage"]="contains_numerical_external_id" )
+declare -A threescale_id_of_external_id=( ["metric"]="id_of_external_id_with_prefix" ["method"]="id_of_external_id_with_prefix" ["backend_usage"]="id_of_numerical_external_id" )
+declare -A threescale_external_id=( ["backend_usage"]="backend_id" ["application_apikey"]="user_key" ["application_appid"]="application_id" ["limit"]="period" ["mapping_rule"]="no external id" ["pricing_rule"]="no external id" )
 
 template=$(cat <<"EOF"
 function OBJECT_TYPE_list () {

@@ -40,7 +40,7 @@ function threescale_call () {
         echo "=> HTTP $(cat "$tmp/$request_name.code")" >&2
     fi
     
-    if ! egrep -q "^$expected_http_codes\$" "$tmp/$request_name.code"; then
+    if ! egrep -q "^($expected_http_codes)\$" "$tmp/$request_name.code"; then
         echo "Unexpected HTTP code: $(cat "$tmp/$request_name.code")" >&2
         return 1
     fi

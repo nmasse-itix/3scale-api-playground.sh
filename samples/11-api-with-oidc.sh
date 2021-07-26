@@ -101,6 +101,25 @@ declare -A application_plan_def=( ["system_name"]="test" ["name"]="Test plan" )
 apply application_plan present application_plan_def
 application_plan_id=$last_object_id
 
+# Create Limits for the sayHello method
+breadcrumb=( application_plans $application_plan_id metrics $method_id )
+declare -A limit_def=( ["period"]="minute" ["value"]="5" )
+apply limit present limit_def
+declare -A limit_def=( ["period"]="day" ["value"]="100" )
+apply limit present limit_def
+
+# Re-Create Pricing Rules for the sayHello method
+breadcrumb=( application_plans $application_plan_id metrics $method_id )
+delete_all "pricing_rule"
+declare -A pricing_rule_def=( ["min"]="1" ["max"]="10" ["cost_per_unit"]="1.0" )
+pricing_rule_create pricing_rule_def
+declare -A pricing_rule_def=( ["min"]="11" ["max"]="100" ["cost_per_unit"]="0.9" )
+pricing_rule_create pricing_rule_def
+declare -A pricing_rule_def=( ["min"]="101" ["max"]="1000" ["cost_per_unit"]="0.8" )
+pricing_rule_create pricing_rule_def
+declare -A pricing_rule_def=( ["min"]="1001" ["max"]="" ["cost_per_unit"]="0.75" )
+pricing_rule_create pricing_rule_def
+
 ##
 ## Create a test application
 ##
